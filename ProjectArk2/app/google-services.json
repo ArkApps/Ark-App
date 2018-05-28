@@ -1,0 +1,59 @@
+{
+  "project_info": {
+    "project_number": "738014131090",
+    "firebase_url": "https://project-ark-24ec5.firebaseio.com",
+    "project_id": "project-ark-24ec5",
+    "storage_bucket": "project-ark-24ec5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:738014131090:android:d492aaa7b15d586a",
+        "android_client_info": {
+          "package_name": "mob.projectark"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "738014131090-0837c4736culp6gpbk7dbdn8t6q2n5nf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mob.projectark",
+            "certificate_hash": "5c162181dc4470251fdaab6bdd1db0bacb5c8bef"
+          }
+        },
+        {
+          "client_id": "738014131090-p4sp89dcb4t3ca2rofaaggrddldac7cb.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "738014131090-p4sp89dcb4t3ca2rofaaggrddldac7cb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQuo8G7xKP53wq0HdH05sPZjnEGAycf1c"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "738014131090-p4sp89dcb4t3ca2rofaaggrddldac7cb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
