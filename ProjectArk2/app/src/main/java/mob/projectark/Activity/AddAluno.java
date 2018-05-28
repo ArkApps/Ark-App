@@ -77,6 +77,7 @@ public class AddAluno extends AppCompatActivity {
                     usuarios.setSenha(NomePlayerCad.getText().toString());
                     usuarios.setSenhaconfirm(NomePlayerCad.getText().toString());
 
+                    cadastrarUsuario();
                     if (UsertypeAluno.isChecked()) {
                         usuarios.setUsertype("Aluno");
                     } else if (UsertypeStaff.isChecked()) {
