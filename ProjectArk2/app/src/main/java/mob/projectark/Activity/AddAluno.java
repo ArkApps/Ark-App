@@ -73,22 +73,21 @@ public class AddAluno extends AppCompatActivity {
                     usuarios.setSobrenome(SobrenomePlayerCad.getText().toString());
                     usuarios.setNomePJCad(NomePJCad.getText().toString());
                     usuarios.setTelCad(TelCad.getText().toString());
-                    usuarios.setEmail(NomePlayerCad.getText().toString());
-                    usuarios.setSenha(NomePlayerCad.getText().toString());
-                    usuarios.setSenhaconfirm(NomePlayerCad.getText().toString());
+                    usuarios.setEmail(EmailCad.getText().toString());
+                    usuarios.setSenha(SenhaCad.getText().toString());
+                    usuarios.setSenhaconfirm(SenhaConfirmCad.getText().toString());
 
                     cadastrarUsuario();
                     if (UsertypeAluno.isChecked()) {
                         usuarios.setUsertype("Aluno");
                     } else if (UsertypeStaff.isChecked()) {
-                        usuarios.setUsertype("Staff");
+                        usuarios.setUsertype("Staff");}
                     } else {
                         Toast.makeText(AddAluno.this, "As senhas não são correspondentes", Toast.LENGTH_LONG).show();
                     }
                 }
-            }
-        });
-    }
+            });
+        }
 
     private void cadastrarUsuario(){
             autenticacao = ConfigFirebase.getFirebaseAutenticacao();
@@ -126,7 +125,7 @@ public class AddAluno extends AppCompatActivity {
                             erroExcecao = "Erro ao efetuar o cadastro";
                             e.printStackTrace();
                         }
-                        Toast.makeText(AddAluno.this,"Erro:" + erroExcecao, Toast.LENGTH_LONG).show();
+                        Toast.makeText(AddAluno.this,"Erro: " + erroExcecao, Toast.LENGTH_LONG).show();
                 }
             }
         });
