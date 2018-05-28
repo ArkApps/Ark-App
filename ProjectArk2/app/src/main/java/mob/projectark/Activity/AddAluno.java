@@ -18,10 +18,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
 
 import mob.projectark.DAO.ConfigFirebase;
 import mob.projectark.Entidades.Usuarios;
+import mob.projectark.Helper.Preferencias;
 import mob.projectark.R;
 
 import static android.icu.lang.UCharacter.GraphemeClusterBreak.V;
@@ -92,14 +94,24 @@ public class AddAluno extends AppCompatActivity {
             ).addOnCompleteListener(AddAluno.this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()){
-                        Toast.makeText(AddAluno.this,"Aluno cadastrado com sucesso",Toast.LENGTH_LONG).show();
+                    if (task.isSuccessful()) {
+                        Toast.makeText(AddAluno.this, "Aluno cadastrado com sucesso", Toast.LENGTH_LONG).show();
 
                         String identificadorUsuario = usuarios.getEmail();
 
                         FirebaseUser usuarioFirebase = task.getResult().getUser();
                         usuarios.setId(identificadorUsuario);
                         usuarios.salvar();
+
+                        Preferencias Preferencias = new Preferencias((AddAluno.this));
+                        Preferencias.salvarUsuarioPreferencias(identificadorUsuario, usuarios.getNome());
+                    }else {
+                        String erroExcecao = "";
+
+                        try{
+                            throw task.getException()
+                        }catch (FirebaseAuthWeakPasswordException e){
+                            erroExcecao = "Digite uma senha mais forte, contendo no mininmo 8 caracteres de letras e numeros"
                     }
                 }
             });

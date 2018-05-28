@@ -3,18 +3,18 @@ package mob.projectark.Helper;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-public class preferencias {
+public class Preferencias {
 
     private Context context;
     private SharedPreferences preferences;
-    private String NOME_ARQUIVO = "mob.projectark.preferencias";
+    private String NOME_ARQUIVO = "mob.projectark.Preferencias";
     private int MODE = 0;
     private SharedPreferences.Editor editor;
 
     private final String CHAVE_IDENTIFICADOR = "identificarUsuarioLogado";
     private final String CHAVE_NOME = "nomeUsuarioLogado";
 
-    public preferencias(Context context) {
+    public Preferencias(Context context) {
         this.context = context;
         preferences = context.getSharedPreferences(NOME_ARQUIVO, MODE);
 
