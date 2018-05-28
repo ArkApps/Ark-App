@@ -68,19 +68,19 @@ public class AddAluno extends AppCompatActivity {
             @Override
             public void onClick(View V) {
                 if (SenhaCad.getText().toString().equals(SenhaConfirmCad.getText().toString())) {
-                    Usuarios = new Usuarios();
-                    Usuarios.setNome(NomePlayerCad.getText().toString());
-                    Usuarios.setSobrenome(SobrenomePlayerCad.getText().toString());
-                    Usuarios.setNomePJCad(NomePJCad.getText().toString());
-                    Usuarios.setTelCad(TelCad.getText().toString());
-                    Usuarios.setEmail(NomePlayerCad.getText().toString());
-                    Usuarios.setSenha(NomePlayerCad.getText().toString());
-                    Usuarios.setSenhaconfirm(NomePlayerCad.getText().toString());
+                    usuarios = new Usuarios();
+                    usuarios.setNome(NomePlayerCad.getText().toString());
+                    usuarios.setSobrenome(SobrenomePlayerCad.getText().toString());
+                    usuarios.setNomePJCad(NomePJCad.getText().toString());
+                    usuarios.setTelCad(TelCad.getText().toString());
+                    usuarios.setEmail(NomePlayerCad.getText().toString());
+                    usuarios.setSenha(NomePlayerCad.getText().toString());
+                    usuarios.setSenhaconfirm(NomePlayerCad.getText().toString());
 
                     if (UsertypeAluno.isChecked()) {
-                        Usuarios.setUsertype("Aluno");
+                        usuarios.setUsertype("Aluno");
                     } else if (UsertypeStaff.isChecked()) {
-                        Usuarios.setUsertype("Staff");
+                        usuarios.setUsertype("Staff");
                     } else {
                         Toast.makeText(AddAluno.this, "As senhas não são correspondentes", Toast.LENGTH_LONG).show();
                     }

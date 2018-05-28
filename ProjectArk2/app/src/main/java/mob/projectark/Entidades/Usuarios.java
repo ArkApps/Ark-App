@@ -41,6 +41,8 @@ public class Usuarios {
         hashMapUsuario.put("Email", getEmail());
         hashMapUsuario.put("Senha", getSenha());
         hashMapUsuario.put("Usertype", getUsertype());
+
+        return hashMapUsuario;
     }
 
         public String getId() {
