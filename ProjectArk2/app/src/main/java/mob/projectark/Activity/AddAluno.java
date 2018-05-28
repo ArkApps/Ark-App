@@ -1,5 +1,6 @@
 package mob.projectark.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -18,6 +19,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -44,7 +47,7 @@ public class AddAluno extends AppCompatActivity {
     private FirebaseAuth autenticacao;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_aluno);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -63,7 +66,7 @@ public class AddAluno extends AppCompatActivity {
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View V){}
+            public void onClick(View V) {
                 if (SenhaCad.getText().toString().equals(SenhaConfirmCad.getText().toString())) {
                     Usuarios = new Usuarios();
                     Usuarios.setNome(NomePlayerCad.getText().toString());
@@ -105,17 +108,31 @@ public class AddAluno extends AppCompatActivity {
 
                         Preferencias Preferencias = new Preferencias((AddAluno.this));
                         Preferencias.salvarUsuarioPreferencias(identificadorUsuario, usuarios.getNome());
+
+                        abrirJornal();
                     }else {
                         String erroExcecao = "";
 
                         try{
-                            throw task.getException()
+                            throw task.getException();
                         }catch (FirebaseAuthWeakPasswordException e){
-                            erroExcecao = "Digite uma senha mais forte, contendo no mininmo 8 caracteres de letras e numeros"
-                    }
+                            erroExcecao = "Digite uma senha mais forte, contendo no mininmo 8 caracteres de letras e numeros";
+                        }catch (FirebaseAuthInvalidCredentialsException e){
+                            erroExcecao = "O e-mail digitado é inválido, digite um novo e-mail";
+                        }catch (FirebaseAuthUserCollisionException e){
+                            erroExcecao = "O usuário já está cadastrado";
+                        }catch (Exception e){
+                            erroExcecao = "Erro ao efetuar o cadastro";
+                            e.printStackTrace();
+                        }
+                        Toast.makeText(AddAluno.this,"Erro:" + erroExcecao, Toast.LENGTH_LONG).show();
                 }
-            });
-        }
-
-
+            }
+        });
+    }
+    public void abrirJornal() {
+        Intent intent = new Intent(AddAluno.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }
