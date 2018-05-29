@@ -104,16 +104,16 @@ public class AddAluno extends AppCompatActivity {
                         String identificadorUsuario = usuarios.getEmail();
 
                         FirebaseUser usuarioFirebase = task.getResult().getUser();
-                        usuarios.setId(identificadorUsuario);
+                        String UID = task.getResult().getUser().getUid();
+                        //usuarios.setId(identificadorUsuario);
                         usuarios.salvar();
 
-                        String UID = task.getResult().getUser().getUid();
                         ConfigFirebase.getFirebase();
-                        referenciaFirebase.getRoot().child("users").child(UID).child("public").child("playername").setValue(usuarios.getNome());
-                        referenciaFirebase.getRoot().child("users").child(UID).child("public").child("pjname").setValue(usuarios.getNomePJCad());
+                        referenciaFirebase.child("users").child(UID).child("public").child("playername").setValue(usuarios.getNome());
+                        referenciaFirebase.child("users").child(UID).child("public").child("pjname").setValue(usuarios.getNomePJCad());
                         //referenciaFirebase.child("users").child(UID).child("public").child("pjage").setValue(usuarios.getIdadePJ());
-                        referenciaFirebase.getRoot().child("users").child(UID).child("restrict").child("Whatsapp").setValue(usuarios.getTelCad());
-                        //referenciaFirebase.getRoot().child("users").child(UID).child("Restrict").child("Email").setValue(usuarios.getEmail());
+                        referenciaFirebase.child("users").child(UID).child("restrict").child("Whatsapp").setValue(usuarios.getTelCad());
+                        referenciaFirebase.child("users").child(UID).child("Restrict").child("Email").setValue(usuarios.getEmail());
                         //referenciaFirebase.child("users").child(UID).child("Restrict").child("ArkCoins").setValue(usuarios.getCoins());
                         //referenciaFirebase.child("users").child(UID).child("optional").child("playerage").setValue(usuarios.getIdade());
                         //referenciaFirebase.child("users").child(UID).child("optional").child("power").setValue(usuarios.getPower());
