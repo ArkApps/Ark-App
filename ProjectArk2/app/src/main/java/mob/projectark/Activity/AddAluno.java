@@ -35,12 +35,16 @@ import static android.icu.lang.UCharacter.GraphemeClusterBreak.V;
 public class AddAluno extends AppCompatActivity {
 
     private EditText NomePlayerCad;
-    private EditText SobrenomePlayerCad;
     private EditText NomePJCad;
     private EditText TelCad;
     private EditText EmailCad;
     private EditText SenhaCad;
     private EditText SenhaConfirmCad;
+    private EditText IdadePlayerCad;
+    private EditText PJPower;
+    private EditText Race;
+    private EditText PJAge;
+    private EditText ArkCoins;
     private RadioButton UsertypeStaff;
     private RadioButton UsertypeAluno;
     private FloatingActionButton fab;
@@ -56,8 +60,12 @@ public class AddAluno extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         NomePlayerCad = (EditText)findViewById(R.id.NomePlayerCad);
-        SobrenomePlayerCad = (EditText)findViewById(R.id.SobrenomePlayerCad);
+        IdadePlayerCad = (EditText) findViewById(R.id.IdadePlayerCad);
         NomePJCad = (EditText)findViewById(R.id.NomePJCad);
+        PJAge = (EditText)findViewById(R.id.PJAge);
+        ArkCoins = (EditText)findViewById(R.id.ArkCoins);
+        PJPower = (EditText)findViewById(R.id.PJPower);
+        Race = (EditText)findViewById(R.id.Race) ;
         TelCad = (EditText)findViewById(R.id.TelCad);
         EmailCad = (EditText)findViewById(R.id.EmailCad);
         SenhaCad = (EditText)findViewById(R.id.SenhaCad);
@@ -77,6 +85,11 @@ public class AddAluno extends AppCompatActivity {
                     usuarios.setEmail(EmailCad.getText().toString());
                     usuarios.setSenha(SenhaCad.getText().toString());
                     usuarios.setSenhaconfirm(SenhaConfirmCad.getText().toString());
+                    usuarios.setIdadePlayer(IdadePlayerCad.getText().toString());
+                    usuarios.setPJAge(PJAge.getText().toString());
+                    usuarios.setRace(Race.getText().toString());
+                    usuarios.setPower(PJPower.getText().toString());
+                    usuarios.setArkCoins(ArkCoins.getText().toString());
 
                     cadastrarUsuario();
                     if (UsertypeAluno.isChecked()) {
@@ -106,25 +119,29 @@ public class AddAluno extends AppCompatActivity {
 
                         FirebaseUser usuarioFirebase = task.getResult().getUser();
                         String UID = task.getResult().getUser().getUid();
-                        //usuarios.setId(identificadorUsuario);
-                        usuarios.salvar();
 
                         referenciaFirebase.child("users").child(UID).child("public").child("playername").setValue(usuarios.getNome());
                         referenciaFirebase.child("users").child(UID).child("public").child("pjname").setValue(usuarios.getNomePJCad());
-                        //referenciaFirebase.child("users").child(UID).child("public").child("pjage").setValue(usuarios.getIdadePJ());
-                        referenciaFirebase.child("users").child(UID).child("restrict").child("Whatsapp").setValue(usuarios.getTelCad());
-                        referenciaFirebase.child("users").child(UID).child("Restrict").child("Email").setValue(usuarios.getEmail());
-                        //referenciaFirebase.child("users").child(UID).child("Restrict").child("ArkCoins").setValue(usuarios.getCoins());
-                        //referenciaFirebase.child("users").child(UID).child("optional").child("playerage").setValue(usuarios.getIdade());
-                        //referenciaFirebase.child("users").child(UID).child("optional").child("power").setValue(usuarios.getPower());
-                        //referenciaFirebase.child("users").child(UID).child("optional").child("race").setValue(usuarios.getRace());
+                        referenciaFirebase.child("users").child(UID).child("public").child("pjage").setValue(usuarios.getPJAge());
+                        referenciaFirebase.child("users").child(UID).child("restrict").child("whatsapp").setValue(usuarios.getTelCad());
+                        referenciaFirebase.child("users").child(UID).child("restrict").child("email").setValue(usuarios.getEmail());
+                        referenciaFirebase.child("users").child(UID).child("restrict").child("ArkCoins").setValue(usuarios.getArkCoins());
+                        referenciaFirebase.child("users").child(UID).child("optional").child("playerage").setValue(usuarios.getIdadePlayer());
+                        referenciaFirebase.child("users").child(UID).child("optional").child("power").setValue(usuarios.getPower());
+                        referenciaFirebase.child("users").child(UID).child("optional").child("race").setValue(usuarios.getRace());
+                        if ((usuarios.getUsertype()).equals("Staff")){
+                            referenciaFirebase.child("users").child(UID).child("IsAdmin").setValue("true");
+                        }
+                        else {
+                            referenciaFirebase.child("users").child(UID).child("IsAdmin").setValue("false");
+                        }
 
                         Toast.makeText(AddAluno.this,"UID do novo usuário: " + UID, Toast.LENGTH_LONG).show();
 
                         Preferencias Preferencias = new Preferencias((AddAluno.this));
                         Preferencias.salvarUsuarioPreferencias(identificadorUsuario, usuarios.getNome());
 
-                        //abrirJornal();
+                        abrirJornal();
                     }else {
                         String erroExcecao = "";
 

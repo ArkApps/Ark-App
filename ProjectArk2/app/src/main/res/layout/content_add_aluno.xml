@@ -32,28 +32,17 @@
                 android:layout_height="wrap_content" />
 
             <EditText
-                android:id="@+id/SobrenomePlayerCad"
+                android:id="@+id/IdadePlayerCad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textCapWords"
-                android:hint="Sobrenome"
+                android:inputType="number"
+                android:hint="Idade do Jogador"
                 />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-            <EditText
-                android:id="@+id/NomePJCad"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textCapWords"
-                android:hint="Nome do Personagem"
-                />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
 
             <EditText
                 android:id="@+id/TelCad"
@@ -65,6 +54,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+
 
             <EditText
                 android:id="@+id/EmailCad"
@@ -84,8 +74,6 @@
                 android:layout_height="wrap_content"
                 android:hint="Senha" />
 
-
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -102,20 +90,74 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
+            <EditText
+                android:id="@+id/NomePJCad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapWords"
+                android:hint="Nome do Personagem"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/PJAge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="Idade do Personagem"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/Race"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapWords"
+                android:hint="Raça"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/PJPower"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapSentences"
+                android:hint="Poderes do Personagem"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/ArkCoins"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="ArkCoins (Temporário até o cadastro de \ntodos os alunos atuais do Ark)"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
             <RadioGroup
                 android:id="@+id/usertype"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center_horizontal"
-
-                >
+                android:gravity="center_horizontal" >
 
                 <RadioButton
                     android:id="@+id/UsertypeAluno"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="false"
+                    android:checked="true"
                     android:text="Aluno"/>
 
                 <RadioButton
