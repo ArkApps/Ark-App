@@ -23,6 +23,7 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 
 import mob.projectark.DAO.ConfigFirebase;
 import mob.projectark.Entidades.Usuarios;
@@ -45,6 +46,8 @@ public class AddAluno extends AppCompatActivity {
     private FloatingActionButton fab;
     private Usuarios usuarios;
     private FirebaseAuth autenticacao;
+    private DatabaseReference mDatabase;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -98,7 +101,7 @@ public class AddAluno extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-                        Toast.makeText(AddAluno.this, "Aluno cadastrado com sucesso", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(AddAluno.this, "Aluno cadastrado com sucesso", Toast.LENGTH_LONG).show();
 
                         String identificadorUsuario = usuarios.getEmail();
 
@@ -106,10 +109,14 @@ public class AddAluno extends AppCompatActivity {
                         usuarios.setId(identificadorUsuario);
                         usuarios.salvar();
 
+                        String UID = task.getResult().getUser().getUid()
+
+                        Toast.makeText(AddAluno.this,"UID do novo usuário: " + UID, Toast.LENGTH_LONG).show();
+
                         Preferencias Preferencias = new Preferencias((AddAluno.this));
                         Preferencias.salvarUsuarioPreferencias(identificadorUsuario, usuarios.getNome());
 
-                        abrirJornal();
+                        //abrirJornal();
                     }else {
                         String erroExcecao = "";
 
@@ -131,7 +138,7 @@ public class AddAluno extends AppCompatActivity {
         });
     }
     public void abrirJornal() {
-        Intent intent = new Intent(AddAluno.this, MainActivity.class);
+        Intent intent = new Intent(AddAluno.this, PrincipalActivity.class);
         startActivity(intent);
         finish();
     }

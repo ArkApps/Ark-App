@@ -24,10 +24,6 @@
         <activity
             android:name=".Activity.LoginActivity"
             android:label="@string/app_name" >
-                <intent-filter>
-                    <category android:name="android.intent.category.LAUNCHER" />
-                    <action android:name="android.intent.action.MAIN" />
-                </intent-filter>
         </activity>
 
         <activity
@@ -36,7 +32,11 @@
         <activity
             android:name=".Activity.AddAluno"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" />
-
+            android:theme="@style/AppTheme.NoActionBar" >
+                <intent-filter>
+                    <category android:name="android.intent.category.LAUNCHER" />
+                    <action android:name="android.intent.action.MAIN" />
+                </intent-filter>
+        </activity>
     </application>
 </manifest>
