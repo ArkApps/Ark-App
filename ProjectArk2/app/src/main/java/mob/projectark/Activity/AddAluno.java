@@ -46,7 +46,7 @@ public class AddAluno extends AppCompatActivity {
     private FloatingActionButton fab;
     private Usuarios usuarios;
     private FirebaseAuth autenticacao;
-    private DatabaseReference mDatabase;
+    private DatabaseReference referenciaFirebase;
 
 
     @Override
@@ -55,7 +55,6 @@ public class AddAluno extends AppCompatActivity {
         setContentView(R.layout.activity_add_aluno);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         NomePlayerCad = (EditText)findViewById(R.id.NomePlayerCad);
         SobrenomePlayerCad = (EditText)findViewById(R.id.SobrenomePlayerCad);
         NomePJCad = (EditText)findViewById(R.id.NomePJCad);
@@ -73,7 +72,6 @@ public class AddAluno extends AppCompatActivity {
                 if (SenhaCad.getText().toString().equals(SenhaConfirmCad.getText().toString())) {
                     usuarios = new Usuarios();
                     usuarios.setNome(NomePlayerCad.getText().toString());
-                    usuarios.setSobrenome(SobrenomePlayerCad.getText().toString());
                     usuarios.setNomePJCad(NomePJCad.getText().toString());
                     usuarios.setTelCad(TelCad.getText().toString());
                     usuarios.setEmail(EmailCad.getText().toString());
@@ -109,7 +107,17 @@ public class AddAluno extends AppCompatActivity {
                         usuarios.setId(identificadorUsuario);
                         usuarios.salvar();
 
-                        String UID = task.getResult().getUser().getUid()
+                        String UID = task.getResult().getUser().getUid();
+                        ConfigFirebase.getFirebase();
+                        referenciaFirebase.getRoot().child("users").child(UID).child("public").child("playername").setValue(usuarios.getNome());
+                        referenciaFirebase.getRoot().child("users").child(UID).child("public").child("pjname").setValue(usuarios.getNomePJCad());
+                        //referenciaFirebase.child("users").child(UID).child("public").child("pjage").setValue(usuarios.getIdadePJ());
+                        referenciaFirebase.getRoot().child("users").child(UID).child("restrict").child("Whatsapp").setValue(usuarios.getTelCad());
+                        //referenciaFirebase.getRoot().child("users").child(UID).child("Restrict").child("Email").setValue(usuarios.getEmail());
+                        //referenciaFirebase.child("users").child(UID).child("Restrict").child("ArkCoins").setValue(usuarios.getCoins());
+                        //referenciaFirebase.child("users").child(UID).child("optional").child("playerage").setValue(usuarios.getIdade());
+                        //referenciaFirebase.child("users").child(UID).child("optional").child("power").setValue(usuarios.getPower());
+                        //referenciaFirebase.child("users").child(UID).child("optional").child("race").setValue(usuarios.getRace());
 
                         Toast.makeText(AddAluno.this,"UID do novo usuário: " + UID, Toast.LENGTH_LONG).show();
 
