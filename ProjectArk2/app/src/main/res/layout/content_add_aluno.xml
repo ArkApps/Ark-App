@@ -23,7 +23,7 @@
                 android:id="@+id/NomePlayerCad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textCapCharacters"
+                android:inputType="textCapWords"
                 android:hint="Nome"
                 />
 
@@ -35,7 +35,7 @@
                 android:id="@+id/SobrenomePlayerCad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textCapCharacters"
+                android:inputType="textCapWords"
                 android:hint="Sobrenome"
                 />
 
@@ -46,8 +46,8 @@
             <EditText
                 android:id="@+id/NomePJCad"
                 android:layout_width="match_parent"
-                android:inputType="textCapCharacters"
                 android:layout_height="wrap_content"
+                android:inputType="textCapWords"
                 android:hint="Nome do Personagem"
                 />
 
