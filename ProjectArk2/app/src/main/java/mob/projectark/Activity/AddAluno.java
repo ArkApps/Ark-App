@@ -91,6 +91,7 @@ public class AddAluno extends AppCompatActivity {
         }
 
     private void cadastrarUsuario(){
+            referenciaFirebase = ConfigFirebase.getFirebase();
             autenticacao = ConfigFirebase.getFirebaseAutenticacao();
             autenticacao.createUserWithEmailAndPassword(
                     usuarios.getEmail(),
@@ -108,7 +109,6 @@ public class AddAluno extends AppCompatActivity {
                         //usuarios.setId(identificadorUsuario);
                         usuarios.salvar();
 
-                        ConfigFirebase.getFirebase();
                         referenciaFirebase.child("users").child(UID).child("public").child("playername").setValue(usuarios.getNome());
                         referenciaFirebase.child("users").child(UID).child("public").child("pjname").setValue(usuarios.getNomePJCad());
                         //referenciaFirebase.child("users").child(UID).child("public").child("pjage").setValue(usuarios.getIdadePJ());
