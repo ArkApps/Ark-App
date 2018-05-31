@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_jornal"
+            android:icon="@drawable/ic_menu_journal"
+            android:title="Jornal do Ark" />
+
+        <item android:title="Aluno">
+            <menu>
+
+            <item
+                android:id="@+id/nav_pj"
+                android:icon="@drawable/ic_menu_account"
+                android:title="Personagem" />
+            <item
+                android:id="@+id/nav_dice"
+                android:icon="@drawable/ic_menu_dice"
+                android:title="Dados" />
+            <item
+                android:id="@+id/nav_combat"
+                android:icon="@drawable/ic_menu_combat"
+                android:title="Combate" />
+            <item
+                android:id="@+id/nav_store"
+                android:icon="@drawable/ic_menu_store"
+                android:title="Loja" />
+            <item
+                android:id="@+id/nav_places"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="Locais do Ark" />
+            <item
+                android:id="@+id/nav_manage"
+                android:icon="@drawable/ic_menu_manage"
+                android:title="Configurações" />
+
+            </menu>
+        </item>
+    </group>
+
+    <item android:title="Staff">
+
+        <menu>
+
+            <item
+                android:id="@+id/nav_newuser"
+                android:icon="@drawable/ic_menu_account"
+                android:title="Cadastrar novo usuário" />
+
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Dúvidas/Críticas/Sugestões" />
+
+        </menu>
+    </item>
+
+</menu>

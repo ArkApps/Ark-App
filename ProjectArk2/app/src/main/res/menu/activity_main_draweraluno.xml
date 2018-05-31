@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
@@ -6,7 +7,7 @@
     <group android:checkableBehavior="single">
 
         <item
-            android:id="@+id/nav_pj"
+            android:id="@+id/nav_jornal"
             android:icon="@drawable/ic_menu_journal"
             android:title="Jornal do Ark" />
 
@@ -43,12 +44,14 @@
     </group>
 
     <item android:title="Staff">
+
         <menu>
 
             <item
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"
                 android:title="Dúvidas/Críticas/Sugestões" />
+
         </menu>
     </item>
 
