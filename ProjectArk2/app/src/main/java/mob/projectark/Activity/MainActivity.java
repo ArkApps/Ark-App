@@ -26,9 +26,10 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private DatabaseReference referenciaFirebase;
+    String IsAdmin = "";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         String UID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         referenciaFirebase = ConfigFirebase.getFirebase();
@@ -37,16 +38,7 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
 
-                        String IsAdmin = dataSnapshot.getValue(String.class);
-
-
-                        if (IsAdmin.equals("true")){
-                            setContentView(R.layout.activity_mainadmin);
-                            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layoutadmin);
-                        } else {
-                            setContentView(R.layout.activity_mainaluno);
-                            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layoutaluno);
-                        }
+                        IsAdmin = dataSnapshot.getValue(String.class);
 
                     }
 
@@ -56,6 +48,12 @@ public class MainActivity extends AppCompatActivity
                     }
                 }
         );
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layoutaluno);
+        if (IsAdmin.equals("true")){
+            setContentView(R.layout.activity_mainadmin);
+            drawer = (DrawerLayout) findViewById(R.id.drawer_layoutadmin);
+        }
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -69,7 +67,11 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layoutaluno);
+        if (IsAdmin.equals("true")){
+            setContentView(R.layout.activity_mainadmin);
+            drawer = (DrawerLayout) findViewById(R.id.drawer_layoutadmin);
+        }
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -123,7 +125,11 @@ public class MainActivity extends AppCompatActivity
             abrirCadastro();
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layoutaluno);
+        if (IsAdmin.equals("true")){
+            setContentView(R.layout.activity_mainadmin);
+            drawer = (DrawerLayout) findViewById(R.id.drawer_layoutadmin);
+        }
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
