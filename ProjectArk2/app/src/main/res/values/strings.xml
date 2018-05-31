@@ -21,4 +21,5 @@
         completions."
     </string>
     <string name="title_activity_add_aluno">AddAluno</string>
+    <string name="title_activity_perfil_aluno">Sua ficha</string>
 </resources>

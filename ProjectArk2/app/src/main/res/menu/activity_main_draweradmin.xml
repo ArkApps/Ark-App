@@ -50,7 +50,7 @@
 
             <item
                 android:id="@+id/nav_newuser"
-                android:icon="@drawable/ic_menu_account"
+                android:icon="@drawable/ic_menu_addaccount"
                 android:title="Cadastrar novo usuário" />
 
             <item

@@ -85,7 +85,8 @@ public class MainAdminActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_pj) {
-            // Handle the camera action
+            Intent intentAbrirTelaPJ = new Intent(MainAdminActivity.this, PerfilAlunoActivity.class);
+            startActivity(intentAbrirTelaPJ);
         } else if (id == R.id.nav_dice) {
 
         } else if (id == R.id.nav_combat) {
