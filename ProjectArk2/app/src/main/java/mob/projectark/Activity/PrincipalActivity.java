@@ -6,6 +6,8 @@ import mob.projectark.R;
 
 public class PrincipalActivity extends AppCompatActivity {
 
+    public static String IsAdmin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

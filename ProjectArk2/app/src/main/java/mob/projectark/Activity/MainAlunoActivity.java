@@ -22,12 +22,9 @@ import com.google.firebase.database.ValueEventListener;
 import mob.projectark.DAO.ConfigFirebase;
 import mob.projectark.R;
 
-public class MainActivity extends AppCompatActivity
+
+public class MainAlunoActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
-    private DatabaseReference referenciaFirebase;
-    String IsAdmin = "";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,34 +32,8 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        String UID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        referenciaFirebase = ConfigFirebase.getFirebase();
-        referenciaFirebase.child("users").child(UID).child("IsAdmin").addListenerForSingleValueEvent(
-                new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-
-                        IsAdmin = dataSnapshot.getValue(String.class);
-
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                    }
-                }
-        );
-
-        Toast.makeText(MainActivity.this,IsAdmin,Toast.LENGTH_LONG).show();
-        DrawerLayout drawer;
-        if (IsAdmin.equals("true")){
-            Toast.makeText(MainActivity.this,"ADMIN CARAIOOOOOOO",Toast.LENGTH_LONG).show();
-            setContentView(R.layout.activity_mainadmin);
-            drawer = (DrawerLayout) findViewById(R.id.drawer_layoutadmin);
-        } else {
-
-            setContentView(R.layout.activity_mainaluno);
-            drawer = (DrawerLayout) findViewById(R.id.drawer_layoutaluno);
-        }
+        setContentView(R.layout.activity_mainaluno);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layoutaluno);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -74,12 +45,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer;
-        if (IsAdmin.equals("true")){
-            drawer = (DrawerLayout) findViewById(R.id.drawer_layoutadmin);
-        } else {
-            drawer = (DrawerLayout) findViewById(R.id.drawer_layoutaluno);
-        }
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layoutaluno);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -129,24 +95,12 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_send) {
 
-        } else if (id == R.id.nav_newuser) {
-            abrirCadastro();
         }
 
-        DrawerLayout drawer;
-        if (IsAdmin.equals("true")){
-            drawer = (DrawerLayout) findViewById(R.id.drawer_layoutadmin);
-        } else {
-            drawer = (DrawerLayout) findViewById(R.id.drawer_layoutaluno);
-        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layoutaluno);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
-    public void abrirCadastro() {
-        Intent intentCadastro = new Intent(MainActivity.this, AddAluno.class);
-        startActivity(intentCadastro);
-    }
-
 }
 

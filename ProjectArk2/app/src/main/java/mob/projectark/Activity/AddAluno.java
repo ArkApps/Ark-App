@@ -163,7 +163,7 @@ public class AddAluno extends AppCompatActivity {
         });
     }
     public void abrirJornal() {
-        Intent intentJornal = new Intent(AddAluno.this, MainActivity.class);
+        Intent intentJornal = new Intent(AddAluno.this, MainAdminActivity.class);
         startActivity(intentJornal);
         }
 }
