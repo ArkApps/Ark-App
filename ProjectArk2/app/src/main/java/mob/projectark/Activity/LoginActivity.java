@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     abrirTelaPrincipal();
-                    Toast.makeText(LoginActivity.this, "Login efetuado com sucesso. Seja bem vindo ao Ark", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(LoginActivity.this, "Login efetuado com sucesso. Seja bem vindo ao Ark", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     Toast.makeText(LoginActivity.this, "E-mail e/ou senha incorreta", Toast.LENGTH_SHORT).show();
